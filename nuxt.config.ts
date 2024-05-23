@@ -5,8 +5,9 @@ export default defineNuxtConfig({
     '@nuxt/ui-pro'
   ],
   modules: [
-  '@nuxt/ui',
-  '@formkit/auto-animate/nuxt'
+    '@nuxt/ui',
+    '@formkit/auto-animate/nuxt',
+    '@nuxt/image'
   ],
   runtimeConfig: {
     facebookAccessToken: '',

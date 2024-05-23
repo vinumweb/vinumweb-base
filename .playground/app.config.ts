@@ -1,5 +1,13 @@
 export default defineAppConfig({
-  myLayer: {
-    name: 'My amazing Nuxt layer (overwritten)'
+  ui: {
+    primary: 'stone',
+    gray: 'cool',
+    button: {
+      rounded: 'rounded-full',
+      base: 'transition',
+      default: {
+        size: 'md'
+      }
+    },
   }
 })

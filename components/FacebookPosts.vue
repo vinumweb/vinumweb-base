@@ -24,11 +24,11 @@ getPosts()
 
 </script>
 <template>
-<UBlogList orientation="horizontal" v-auto-animate>
+<UBlogList orientation="horizontal" class="mb-10" v-auto-animate>
     <UBlogPost
     v-for="(item, index) in posts"
     :key="index"
-    :image="{ src: item.full_picture, placeholder, loading: 'lazy' }"
+    :image="{ src: item.full_picture, loading: 'lazy' }"
     :title="item.message"
     :description="item.message"
     :date="new Date(item.created_time).toISOString().split('T')[0]"
@@ -38,6 +38,6 @@ getPosts()
 </UBlogList>
 <div class="flex justify-center gap-2">
     <UButton label="Indlæs flere..." icon="i-tabler-text-caption" loadingIcon="i-tabler-loader-2" :loading="btnLoading" @click="getPosts()" />
-    <UButton icon="i-tabler-x" @click="getPosts(true)" loadingIcon="i-tabler-x" :loading="btnCloseLoading" />
+    <UButton v-if="offset > 3" icon="i-tabler-x" @click="getPosts(true)" loadingIcon="i-tabler-x" :loading="btnCloseLoading" />
 </div>
 </template>
