@@ -32,7 +32,7 @@ getPosts()
     :title="item.message"
     :description="item.message"
     :date="new Date(item.created_time).toISOString().split('T')[0]"
-    :to="'https://facebook.com/' + item.id"
+    :to="item.permalink_url"
     target="_blank"
     />
 </UBlogList>
