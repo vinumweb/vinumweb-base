@@ -1,4 +1,5 @@
 export default defineAppConfig({
+  title: 'VinumWeb',
   ui: {
     primary: 'stone',
     gray: 'cool',
