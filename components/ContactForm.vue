@@ -1,21 +1,23 @@
 <script setup lang="ts">
 const toast = useToast()
 const appConfig = useAppConfig()
-import Joi from 'joi'
+import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '#ui/types'
 const isTermsModalOpen = ref(false)
 const btnLoading = ref(false)
 const btnDisabled = ref(false)
 
-const schema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().email({ minDomainSegments: 2, tlds: false }).required(),
-  phone: Joi.string(),
-  subject: Joi.string().required(),
-  message: Joi.string().required(),
-  consent: Joi.boolean().invalid(false),
-  turnstileToken: Joi.string().required(),
+const schema = object({
+  name: string().required('Udfyld venligst dette felt'),
+  email: string().email('Skriv venligst en gyldig e-mail').required('Udfyld venligst dette felt'),
+  phone: string(),
+  subject: string().required('Udfyld venligst dette felt'),
+  message: string().required('Udfyld venligst dette felt'),
+  consent: string().required('Påkrævet').test('is-true', "Påkrævet", (value) => value != 'false' ),
+  turnstileToken: string().required('Bekræft venligst at du ikke er en robot'),
 })
+
+type Schema = InferType<typeof schema>
 
 const state = reactive({
   name: undefined,
@@ -27,7 +29,7 @@ const state = reactive({
   turnstileToken: undefined,
 })
 
-async function onSubmit (event: FormSubmitEvent<any>) {
+async function onSubmit (event: FormSubmitEvent<Schema>) {
   btnLoading.value = true
   const formData = event.data
   try { 
