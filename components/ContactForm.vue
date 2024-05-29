@@ -85,8 +85,8 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
       <NuxtTurnstile v-model="state.turnstileToken" />
     </UFormGroup>
 
-    <UButton type="submit" :loading="btnLoading" :disabled="btnDisabled">
-      Indsend
+    <UButton type="submit" icon="i-tabler-send" :loading="btnLoading" :disabled="btnDisabled">
+      Send
     </UButton>
   </UForm>
 

@@ -2,31 +2,31 @@
 const btnLoading = ref(false)
 const btnCloseLoading = ref(false)
 const offset = ref(0)
-const posts = ref([])
+const feed = ref([])
 
-async function getPosts(collapse) {
+async function getFeed(collapse) {
     collapse ? btnCloseLoading.value = true : btnLoading.value = true
-    const { data, pending, error, refresh } = await useFetch('/api/facebookPosts', {
+    const { data, pending, error, refresh } = await useFetch('/api/facebookFeed', {
         query: { offset: collapse ? 0 : offset }
     })
     if (collapse) {
-        posts.value = []
+        feed.value = []
     }
-    data.value.posts.forEach(item => {
-        posts.value.push(item)
+    data.value.feed.forEach(item => {
+        feed.value.push(item)
     })
     offset.value = data.value.nextOffset
     btnLoading.value = false
     btnCloseLoading.value = false
 }
 
-getPosts()
+getFeed()
 
 </script>
 <template>
 <UBlogList orientation="horizontal" class="mb-10" v-auto-animate>
     <UBlogPost
-    v-for="(item, index) in posts"
+    v-for="(item, index) in feed"
     :key="index"
     :image="{ src: item.full_picture, loading: 'lazy' }"
     :title="item.message"
@@ -37,7 +37,7 @@ getPosts()
     />
 </UBlogList>
 <div class="flex justify-center gap-2">
-    <UButton label="Indlæs flere..." icon="i-tabler-text-caption" loadingIcon="i-tabler-loader-2" :loading="btnLoading" @click="getPosts()" />
-    <UButton v-if="offset > 3" icon="i-tabler-x" @click="getPosts(true)" loadingIcon="i-tabler-x" :loading="btnCloseLoading" />
+    <UButton label="Indlæs flere..." icon="i-tabler-text-caption" loadingIcon="i-tabler-loader-2" :loading="btnLoading" @click="getfeed()" />
+    <UButton v-if="offset > 3" icon="i-tabler-x" @click="getFeed(true)" loadingIcon="i-tabler-x" :loading="btnCloseLoading" />
 </div>
 </template>

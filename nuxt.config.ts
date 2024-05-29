@@ -4,6 +4,12 @@ export default defineNuxtConfig({
   extends: [
     '@nuxt/ui-pro'
   ],
+  components: [
+    { path: '~/components', prefix: 'VD', pathPrefix: false }
+  ],
+  alias: {
+		yup: 'yup',
+	},
   modules: [
     '@nuxt/ui',
     '@formkit/auto-animate/nuxt',
