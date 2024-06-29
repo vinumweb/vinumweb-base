@@ -40,6 +40,7 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
     
     if (data.success == true) {
       toast.add({ title: 'Success!', description: 'Din besked er sendt afsted!', color: 'green', icon: 'i-tabler-mail', timeout: 10000 })
+      useTrackEvent('Form+Submit')
     } else {
       console.log(data)
       toast.add({ title: 'Kunne ikke verificere', description: 'Vi kunne ikke verificere at du ikke er en robot. Prøv igen eller meld fejlen til VinumWeb.', color: 'red', icon: 'i-tabler-alert-triangle', timeout: 10000 })
@@ -85,8 +86,8 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
       <NuxtTurnstile v-model="state.turnstileToken" />
     </UFormGroup>
 
-    <UButton type="submit" icon="i-tabler-send" :loading="btnLoading" :disabled="btnDisabled">
-      Send
+    <UButton type="submit" trailing-icon="i-tabler-send-2" loading-icon="i-tabler-loader-2" :loading="btnLoading" :disabled="btnDisabled">
+      Indsend
     </UButton>
   </UForm>
 
