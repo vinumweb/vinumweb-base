@@ -37,7 +37,7 @@ getFeed()
     />
 </UBlogList>
 <div class="flex justify-center gap-2">
-    <UButton label="Indlæs flere..." icon="i-tabler-text-caption" loadingIcon="i-tabler-loader-2" :loading="btnLoading" @click="getfeed()" />
+    <UButton label="Indlæs flere..." icon="i-tabler-text-caption" loadingIcon="i-tabler-loader-2" :loading="btnLoading" @click="getFeed(false)" />
     <UButton v-if="offset > 3" icon="i-tabler-x" @click="getFeed(true)" loadingIcon="i-tabler-x" :loading="btnCloseLoading" />
 </div>
 </template>
