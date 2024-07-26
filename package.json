@@ -1,10 +1,10 @@
 {
   "name": "vinumweb-base",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./nuxt.config.ts",
   "scripts": {
-    "dev": "nuxi dev .playground",
+    "playground": "nuxi dev .playground",
     "build": "nuxt build .playground",
     "generate": "nuxt generate .playground",
     "preview": "nuxt preview .playground",
