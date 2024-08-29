@@ -15,7 +15,8 @@ export default defineNuxtConfig({
     '@nuxtjs/plausible',
     'nuxt-delay-hydration',
     'nuxt-typed-router',
-    '@nuxtjs/turnstile'
+    '@nuxtjs/turnstile',
+    'nuxt-easy-lightbox'
   ],
   delayHydration: {
     debug: process.env.NODE_ENV === 'development'
