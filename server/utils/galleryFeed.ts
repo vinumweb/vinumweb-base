@@ -5,7 +5,7 @@ import path from 'path';
 export function getImagesFromDirectory(dir) {
 
   let files: any = []
-  let galleryPath = '.playground/public/gallery'
+  let galleryPath = '/public/gallery'
 
   if (dir == 'all') {
     const absolutePath = path.resolve(galleryPath)
