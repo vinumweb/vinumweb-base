@@ -3,12 +3,17 @@ const btnLoading = ref(false)
 const btnCloseLoading = ref(false)
 const offset = ref(0)
 const feed = ref([])
+const errorAlert = ref()
 
 async function getFeed(collapse) {
     collapse ? btnCloseLoading.value = true : btnLoading.value = true
     const { data, pending, error, refresh } = await useFetch('/api/facebookFeed', {
         query: { offset: collapse ? 0 : offset }
     })
+    if (error.value) {
+        console.log(error)
+        errorAlert.value = { title: 'Der skete en fejl ved indlæsning!', description: 'Mere info kan findes i konsollen.', color: 'red', variant: 'outline', icon: 'i-tabler-exclamation-circle' }
+    }
     if (collapse) {
         feed.value = []
     }
@@ -24,6 +29,7 @@ getFeed()
 
 </script>
 <template>
+<UAlert v-if="errorAlert" v-bind="errorAlert" />
 <UBlogList orientation="horizontal" class="mb-10" v-auto-animate>
     <UBlogPost
     v-for="(item, index) in feed"
